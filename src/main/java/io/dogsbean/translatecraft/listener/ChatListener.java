@@ -5,6 +5,7 @@ import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -21,9 +22,18 @@ public class ChatListener implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         String originalMessage = event.getMessage();
-        String translatedMessage = translateMessage(originalMessage, "en");
 
-        event.setMessage(translatedMessage + ChatColor.GREEN + ChatColor.BOLD + " (Translated)");
+        plugin.getServer().getOnlinePlayers().forEach(listeners -> {
+            if (plugin.getLanguageManager().getLangMap().get(listeners).equals(ChatColor.BLUE + "English")) {
+                String translatedMessage = translateMessage(originalMessage, "en");
+                event.setMessage(translatedMessage + ChatColor.GREEN + ChatColor.BOLD + " (Translated)");
+            }
+
+            if (plugin.getLanguageManager().getLangMap().get(listeners).equals(ChatColor.BLUE + "Korean")) {
+                String translatedMessage = translateMessage(originalMessage, "kr");
+                event.setMessage(translatedMessage + ChatColor.GREEN + ChatColor.BOLD + " (번역됨)");
+            }
+        });
     }
 
     private String translateMessage(String message, String targetLanguage) {

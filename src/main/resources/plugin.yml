@@ -1,0 +1,6 @@
+  name: TranslateCraft
+  main: io.dogsbean.translatecraft.Main
+  version: 1.0
+  commands:
+    language:
+      description: set language
