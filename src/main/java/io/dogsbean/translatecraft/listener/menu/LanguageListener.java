@@ -19,6 +19,8 @@ public class LanguageListener implements Listener {
             return;
         }
 
+        e.setCancelled(true);
+        player.closeInventory();
         Main.getInstance().getLanguageManager().setLangMap(player, clicked.getItemMeta().getDisplayName());
     }
 }
