@@ -10,10 +10,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-@UtilityClass
 public class TranslateMenu {
 
-    public void createLangMenu(Player player) {
+    public static void createLangMenu(Player player) {
         Inventory inventory = Bukkit.createInventory(null, 9, ChatColor.GREEN + "Select the language");
 
         ItemStack english = new ItemStack(Material.PAPER);
